@@ -11,7 +11,8 @@ router.get('/dbg', function(req, res) {
 });
 
 router.get('/*', function(req, res) {
-	res.render('index', { title: 'Star' });
+	console.log(req.path);
+	res.render('index', { title: 'Hot Reloaded Star' });
 });
 
 module.exports = router;
