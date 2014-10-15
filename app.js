@@ -56,5 +56,22 @@ app.use(function(err, req, res, next) {
 		});
 });
 
+var Handlebars = require('handlebars');
+var fs = require('fs'); // this engine requires the fs module
+app.engine('hbs', function (filePath, options, callback) { // define the template engine
+	fs.readFile(filePath, function (err, source) {
+
+		if (err) throw new Error(err);
+		
+		var template = Handlebars.compile("" + source);
+		
+		var rendered = template(options);
+		
+		return callback(null, rendered);
+	})
+});
+app.set('views', './mocks'); // specify the views directory
+app.set('view engine', 'hbs'); // register the template engine
+
 
 module.exports = app;

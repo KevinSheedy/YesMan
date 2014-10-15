@@ -3,16 +3,27 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-	res.render('index', { title: 'Express' });
+	res.render('index', { title: 'YesMan' });
 });
 
-router.get('/dbg', function(req, res) {
-	res.render('index', { title: 'Dbg' });
+
+
+router.get('/customer/:id', function(req, res) {
+	
+	//res.render('index', { title: 'Hot Reloaded grunt' });
+	res.render('customer', {
+		id: req.params.id,
+		firstName: "Kevin",
+		lastName: "Sheedy"
+	});
 });
 
-router.get('/*', function(req, res) {
-	console.log(req.path);
-	res.render('index', { title: 'Hot Reloaded Star' });
+router.get('/foo', function(req, res) {
+	
+	//res.render('index', { title: 'Hot Reloaded grunt' });
+	res.render('foo', {});
 });
+
+
 
 module.exports = router;
