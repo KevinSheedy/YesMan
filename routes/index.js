@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var fs = require('fs');
+var extend = require('node.extend');
 
 var simpleGET = function(url) {
 
@@ -15,7 +16,7 @@ var simplePOST = function(url) {
 
 	router.post(url, function(req, res) {
 
-		var model = req.body;
+		var model = extend(true, req.params, req.body);
 		res.render("." + url, model);
 	});
 }
