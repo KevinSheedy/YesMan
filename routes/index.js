@@ -3,11 +3,20 @@ var router = express.Router();
 var request = require('request');
 var fs = require('fs');
 
-var simpleMock = function(url) {
-	var arr = url.split('.');
+var simpleGET = function(url) {
 
 	router.get(url, function(req, res) {
-		res.render('.' + url, {});
+		res.render('.' + url, req.params);
+	});
+}
+
+var simplePOST = function(url) {
+
+
+	router.post(url, function(req, res) {
+
+		var model = req.body;
+		res.render("." + url, model);
 	});
 }
 
@@ -33,7 +42,9 @@ var getState = function(service) {
 // ROUTES
 //////////////////////////////////////////////////////////////////////////////////////////
 
-simpleMock('/products/books/freakonomics');
+simpleGET('/foo');
+simplePOST('/customer');
+simpleGET('/products/books/freakonomics');
 simpleStatefulMock('/shop/opening-hours');
 
 /* GET home page. */
@@ -51,12 +62,6 @@ router.get('/customer/:id', function(req, res) {
 		firstName: "Kevin",
 		lastName: "Sheedy"
 	});
-});
-
-router.get('/foo', function(req, res) {
-	
-	//res.render('index', { title: 'Hot Reloaded grunt' });
-	res.render('./foo', {});
 });
 
 
