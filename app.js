@@ -70,7 +70,7 @@ app.engine('hbs', function (filePath, options, callback) { // define the templat
 		return callback(null, rendered);
 	})
 });
-app.set('views', './mocks'); // specify the views directory
+app.set('views', path.join(__dirname, 'mocks')); // specify the views directory
 app.set('view engine', 'hbs'); // register the template engine
 
 
