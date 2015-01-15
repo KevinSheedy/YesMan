@@ -3,3 +3,4 @@
 'use strict';
 
 process.title = 'yesman';
+console.log('YesMan Cli...');
