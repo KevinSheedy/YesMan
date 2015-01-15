@@ -18,7 +18,7 @@
   "author": "Kevin Sheedy",
   "license": "MIT",
   "main": "main.js",
-  "bin" : { "yesman" : "./cli.js" },
+  "bin" : "./yesman.js",
   "bugs": {
     "url": "https://github.com/KevinSheedy/YesMan/issues"
   },
