@@ -1,4 +1,3 @@
-console.log('start app.js');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -28,9 +27,9 @@ app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-		var err = new Error('Not Found');
-		err.status = 404;
-		next(err);
+	var err = new Error('Not Found');
+	err.status = 404;
+	next(err);
 });
 
 // error handlers
@@ -38,41 +37,24 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-		app.use(function(err, req, res, next) {
-				res.status(err.status || 500);
-				res.render('error', {
-						message: err.message,
-						error: err
-				});
+	app.use(function(err, req, res, next) {
+		res.status(err.status || 500);
+		res.render('error', {
+			message: err.message,
+			error: err
 		});
+	});
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-		res.status(err.status || 500);
-		res.render('error', {
-				message: err.message,
-				error: {}
-		});
+	res.status(err.status || 500);
+	res.render('error', {
+		message: err.message,
+		error: {}
+	});
 });
-
-var Handlebars = require('handlebars');
-var fs = require('fs'); // this engine requires the fs module
-app.engine('hbs', function (filePath, options, callback) { // define the template engine
-	fs.readFile(filePath, function (err, source) {
-
-		if (err) throw new Error(err);
-		
-		var template = Handlebars.compile("" + source);
-		
-		var rendered = template(options);
-		
-		return callback(null, rendered);
-	})
-});
-app.set('views', path.join(__dirname, 'mocks')); // specify the views directory
-app.set('view engine', 'hbs'); // register the template engine
 
 
 module.exports = app;

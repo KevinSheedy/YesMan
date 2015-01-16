@@ -3,11 +3,42 @@
 'use strict';
 
 process.title = 'yesman';
-console.log('YesMan Cli...');
+var debug = require('debug');
 
-var args = process.argv.slice(2);
+debug('YesMan Cli...');
 
-console.log(args.length);
+var commands = {
+	help : function() {
+		console.log("usage: yesman <command> [<args>]")
+		console.log("")
+		console.log("   help");
+		console.log("   init    Create an empty YesMan project");
+		console.log("   start   Start the YesMan server");
 
+	},
+	init : function() {
+		debug('init handler');
 
-var yesman = require('./bin/www');
+	},
+	start : function() {
+		debug('start handler');
+		var yesman = require('./bin/www');
+	}
+}
+
+function main() {
+	var args = process.argv.slice(2);
+
+	var command = args[0] || 'help';
+	debug('Command: ' + command);	
+
+	var handler = commands[command];
+
+	if(!handler)
+		process.exit(1); 
+
+	handler.apply(null, []);
+
+}
+
+main();

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 console.log('start www');
 var debug = require('debug')('myapp');
-var app = require('../app');
+var app = require('../yesman-app');
 
 app.set('port', process.env.PORT || 3000);
 
