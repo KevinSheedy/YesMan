@@ -22,14 +22,17 @@ var commands = {
 	},
 	start : function() {
 		debug('start handler');
-		var yesman = require('./bin/www');
+		var appPath = arguments[0];
+		var yesman = require('./exports');
+		console.log(appPath);
+		yesman.start(appPath);
 	}
 }
 
 function main() {
-	var args = process.argv.slice(2);
+	var command = process.argv[2] || 'help';
+	var args = process.argv.slice(3) || [];
 
-	var command = args[0] || 'help';
 	debug('Command: ' + command);	
 
 	var handler = commands[command];
@@ -37,7 +40,7 @@ function main() {
 	if(!handler)
 		process.exit(1); 
 
-	handler.apply(null, []);
+	handler.apply(null, args);
 
 }
 

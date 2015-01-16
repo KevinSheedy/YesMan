@@ -32,7 +32,7 @@ var simpleStatefulMock = function(url) {
 
 
 var getState = function(service) {
-	var globalState = JSON.parse(fs.readFileSync("current-state.json", {encoding : "utf8"}));
+	var globalState = JSON.parse(fs.readFileSync("../app/current-state.json", {encoding : "utf8"}));
 	console.log(globalState);
 	var state = globalState[service];
 	console.log(state);
