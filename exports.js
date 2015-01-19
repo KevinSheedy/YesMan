@@ -2,6 +2,7 @@ module.exports = {
 	start : function(appPath){
 		console.log('YesMan!!!!!!!');
 		var debug = require('debug')('myapp');
+		require('./js/globals').appPath = appPath;
 		var app = initExpressApp(appPath);
 		//var userApp = require(appPath + '/' + 'plugins');
 		//userApp(app);
@@ -14,9 +15,7 @@ module.exports = {
 	}
 }
 
-function initExpressApp(appPath) {
-
-	console.log('initExpressApp(): ' + appPath);
+function initExpressApp() {
 
 	var express = require('express');
 	var path = require('path');
@@ -49,6 +48,7 @@ function initExpressApp(appPath) {
 
 
 	// Routes setup has to be done here!!!
+	var appPath = require('./js/globals').appPath;
 	var plugins = require(appPath + '/plugins');
 	plugins(app);
 

@@ -1,0 +1,21 @@
+{
+	"state" : {
+		"httpStatus" : 200,
+		"template" : null,
+		"reqParser" : null,
+		"mockGenerator" : null,
+		"diff" : null
+	},
+
+	"routeTemplate" : {
+		"verbs" : ["GET"],
+		"states" : {
+			"unauthorized" : {
+				"httpStatus" : 401
+			},
+			"serverError" : {
+				"httpStatus" : 500
+			}
+		}
+	}
+}

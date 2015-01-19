@@ -1,0 +1,5 @@
+{
+	"domainRoot" : "/foo",
+	"yesmanRoot" : "test/yesman/",
+	"scenario" : "bar"
+}
