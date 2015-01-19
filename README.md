@@ -1,5 +1,9 @@
 # YesMan
-Yesman is a **mocking server** built on node.js and express.js. It is designed for use with RESTful json APIs. Yesman combines data from **4 sources** to build a mock response.
+Yesman is a **mocking server** built on node.js and express.js. It is designed for use with RESTful json APIs.
+
+## Overview
+
+Yesman combines data from **4 sources** to build a mock json response.
 
 - **Template** - Defines the structure of the response and some default values.
 - **HttpRequest** - Values can be picked from the request and echoed back in the response.
@@ -7,6 +11,18 @@ Yesman is a **mocking server** built on node.js and express.js. It is designed f
 - **State** - Each service can be put into a particular state. For example, for a customer lookup service, the state could be set to: CUSTOMER_FOUND, CUSTOMER_NOT_FOUND, UNAUTHORIZED, SERVER_ERROR
 
 This merge is done using [json-cascade](https://www.npmjs.com/package/json-cascade).
+
+## Install
+```shell
+npm install -g yesman
+```
+
+## Usage
+```shell
+yesman init
+cd yesman
+yesman start
+```
 
 ## Templates
 Templates define the structure of the response and are stored in .json files in the templates folder.
