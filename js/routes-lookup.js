@@ -10,9 +10,9 @@ var _ = require('underscore');
 var extend = require('node.extend');
 var fs = require('fs');
 
-var routes = require('../routes');
-var defaults = require('../defaults');
 var globals = require('./globals');
+var routes = require(globals.appPath + '/routes');
+var defaults = require('../defaults');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Template for how a route is configured
