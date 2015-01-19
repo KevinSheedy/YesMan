@@ -29,7 +29,7 @@ app.use('/users', users);
 
 
 // Routes setup has to be done here!!!
-require('./app/app')(app);
+require('./app/plugins')(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

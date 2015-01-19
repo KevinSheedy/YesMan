@@ -3,7 +3,7 @@ module.exports = {
 		console.log('YesMan!!!!!!!');
 		var debug = require('debug')('myapp');
 		var app = require('./express-app');
-		var userApp = require(appPath + '/' + 'app');
+		var userApp = require(appPath + '/' + 'plugins');
 		userApp(app);
 
 		app.set('port', process.env.PORT || 3000);
