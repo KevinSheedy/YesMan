@@ -4,6 +4,7 @@
 
 process.title = 'yesman';
 var debug = require('debug');
+var wrench = require('wrench');
 
 debug('YesMan Cli...');
 
@@ -16,13 +17,19 @@ var commands = {
 		console.log("   start   Start the YesMan server");
 
 	},
-	init : function() {
+	init : function(appName) {
 		debug('init handler');
 
+		var appDir = __dirname + '/app';
+		var outDir = process.cwd() + '/' + appName;
+
+		wrench.copyDirSyncRecursive(appDir, outDir, {});
+
 	},
-	start : function() {
-		debug('start handler');
-		var appPath = arguments[0];
+	start : function(appPath) {
+
+		appPath = appPath || process.cwd();
+
 		var yesman = require('./exports');
 		console.log(appPath);
 		yesman.start(appPath);
