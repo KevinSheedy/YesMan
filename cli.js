@@ -19,6 +19,7 @@ var commands = {
 	},
 	init : function(appName) {
 		debug('init handler');
+		appName = appName || 'yesman';
 
 		var appDir = __dirname + '/app';
 		var outDir = process.cwd() + '/' + appName;

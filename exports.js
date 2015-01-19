@@ -50,7 +50,7 @@ function initExpressApp() {
 	// Routes setup has to be done here!!!
 	var appPath = require('./js/globals').appPath;
 	var plugins = require(appPath + '/plugins');
-	plugins(app);
+	plugins(app, module);
 
 	// catch 404 and forward to error handler
 	app.use(function(req, res, next) {
