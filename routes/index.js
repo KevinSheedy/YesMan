@@ -72,14 +72,30 @@ router.get('/customer/:id', function(req, res) {
 	});
 });
 
-router.get('/forward', function(req, res) {
-	
-	var newurl = 'https://gist.githubusercontent.com/Keeguon/2310008/raw/865a58f59b9db2157413e7d3d949914dbf5a237d/countries.json';
-	request(newurl).pipe(res);
-});
+//router.get('/forward', function(req, res) {
+//	
+//	var newurl = 'https://gist.githubusercontent.com/Keeguon/2310008/raw/865a58f59b9db2157413e7d3d949914dbf5a237d/countries.json';
+//	request(newurl).pipe(res);
+//});
 
 
 _.each(routes, initRouteHandler);
+
+initForwards(router);
+
+function initForwards(router) {
+	var forwards = util.getForwards();
+
+	_.each(forwards, function(forwardingUrl, receivedUrl) {
+		console.log(receivedUrl, forwardingUrl);
+
+		router.get(receivedUrl, function(req, res) {
+
+			request(forwardingUrl).pipe(res);
+		});
+
+	})
+}
 
 function initRouteHandler(service, url) {
 	

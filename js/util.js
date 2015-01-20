@@ -8,6 +8,7 @@ var cache = {
 	templates : {},
 	models : {},
 	views : {},
+	forwards : null,
 	scenarios : null
 };
 
@@ -74,6 +75,15 @@ var util = {
 		}
 
 		return cache.scenarios[scenarioName][url];
+	},
+
+	getForwards : function() {
+		if(!cache.forwards) {
+			var path = globals.appPath + '/' + 'services.json';
+			cache.forwards = JSON.parse(fs.readFileSync(path, {encoding : "utf8"})).forwards;
+		}
+
+		return cache.forwards;
 	}
 }
 

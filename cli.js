@@ -21,6 +21,8 @@ var commands = {
 		debug('init handler');
 		appName = appName || 'yesman';
 
+		console.log('Creating yesman instance [' + appName + ']');
+
 		var appDir = __dirname + '/app';
 		var outDir = process.cwd() + '/' + appName;
 
