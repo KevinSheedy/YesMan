@@ -131,8 +131,8 @@ var util = {
 				cache.serviceTemplates[serviceDir] = loadJson(filePath);
 			}
 
-			return cache.serviceTemplates[serviceDir];
 		}
+		return cache.serviceTemplates[serviceDir];
 	},
 
 	getServiceConfig : function(serviceDir) {
@@ -145,6 +145,14 @@ var util = {
 		}
 
 		return cache.serviceConfigs[serviceDir];
+	},
+
+	getServiceDiff : function(serviceDir, diffFileName) {
+		if(!diffFileName)
+			return null;
+
+		var diffPath = APP_PATH + 'services' + '/' + serviceDir + '/' + diffFileName;
+		return require(diffPath);
 	}
 }
 

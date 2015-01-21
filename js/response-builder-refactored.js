@@ -19,7 +19,7 @@ module.exports = function(serviceDir, stateConfig, reqBody) {
 	var template  = util.getServiceTemplate(serviceDir, stateConfig.template);
 	var reqData   = reqParsers(stateConfig.reqParser)(template, reqBody);
 	var genData   = dummyDataGenerator(stateConfig.mockGenerator)(reqBody);
-	var stateData = util.getDiff(stateConfig.diff);
+	var stateData = util.getServiceDiff(serviceDir, stateConfig.diff);
 
 	// We build the response by combining the various sources of mock data in a cascading manner.
 	// Order of precedence from High to Low:
