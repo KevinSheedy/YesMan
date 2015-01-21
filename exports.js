@@ -2,7 +2,7 @@ module.exports = {
 	start : function(appPath){
 		console.log('YesMan!!!!!!!');
 		var debug = require('debug')('myapp');
-		require('./js/globals').appPath = appPath;
+		require('./js/globals').appPath = appPath + '/';
 		var app = initExpressApp(appPath);
 		//var userApp = require(appPath + '/' + 'plugins');
 		//userApp(app);

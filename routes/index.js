@@ -11,6 +11,7 @@ var util = require('../js/util');
 var getIntersection = require('../js/get-intersection');
 var getState = require('../js/get-state');
 var responseBuilder = require('../js/response-builder');
+var responseBuilderRefactored = require('../js/response-builder-refactored');
 
 //var yesmanTest = require('../test/yesman-test');
 
@@ -79,15 +80,15 @@ router.get('/customer/:id', function(req, res) {
 //});
 
 
-_.each(routes, initRouteHandler);
+//_.each(routes, initRouteHandler);
 
-initForwards(router);
+initForwards();
+initServices();
 
-function initForwards(router) {
+function initForwards() {
 	var forwards = util.getForwards();
 
 	_.each(forwards, function(forwardingUrl, receivedUrl) {
-		console.log(receivedUrl, forwardingUrl);
 
 		router.get(receivedUrl, function(req, res) {
 
@@ -96,6 +97,66 @@ function initForwards(router) {
 
 	})
 }
+
+
+
+
+
+function initServices(router) {
+	var services = util.getServices();
+
+	_.each(services, function(serviceDir, url) {
+
+		initService(url, serviceDir, router);
+
+	})
+}
+
+function initService(url, serviceDir) {
+
+	console.log(url, serviceDir);
+	// var serviceConfig = util.getRawServiceConfig(serviceDir);
+	var generatedConfig = util.getServiceConfig(serviceDir);
+
+	//console.log('generatedConfig:', generatedConfig);
+
+	if(_.contains(generatedConfig.verbs, "GET")) {
+		initGETjsonRefactored(url, serviceDir);
+	}
+	
+	//if(_.contains(generatedConfig.verbs, "POST")) {
+	//	initPOSTjsonRefactored(url, serviceDir);
+	//}
+
+}
+
+function initGETjsonRefactored(url, serviceDir) {
+
+	router.get(url, function(req, res) {
+
+		var state = getState(url);
+		console.log('state:', state);
+		var serviceConfig = util.getServiceConfig(serviceDir);
+		var stateConfig = serviceConfig.states[state];
+
+		res.set('Content-Type', 'application/json');
+		res.status(stateConfig.httpStatus);
+
+		var response = responseBuilderRefactored(serviceDir, stateConfig, req.body);
+
+		res.send(response);
+	});
+}
+
+
+
+
+
+
+
+
+
+
 
 function initRouteHandler(service, url) {
 	
