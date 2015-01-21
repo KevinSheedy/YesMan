@@ -124,15 +124,33 @@ function initService(url, serviceDir) {
 		initGETjsonRefactored(url, serviceDir);
 	}
 	
-	//if(_.contains(generatedConfig.verbs, "POST")) {
-	//	initPOSTjsonRefactored(url, serviceDir);
-	//}
+	if(_.contains(generatedConfig.verbs, "POST")) {
+		initPOSTjsonRefactored(url, serviceDir);
+	}
 
 }
 
 function initGETjsonRefactored(url, serviceDir) {
 
 	router.get(url, function(req, res) {
+
+		var state = getState(url);
+		console.log('state:', state);
+		var serviceConfig = util.getServiceConfig(serviceDir);
+		var stateConfig = serviceConfig.states[state];
+
+		res.set('Content-Type', 'application/json');
+		res.status(stateConfig.httpStatus);
+
+		var response = responseBuilderRefactored(serviceDir, stateConfig, req.body);
+
+		res.send(response);
+	});
+}
+
+function initPOSTjsonRefactored(url, serviceDir) {
+
+	router.post(url, function(req, res) {
 
 		var state = getState(url);
 		console.log('state:', state);
