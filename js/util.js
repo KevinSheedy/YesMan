@@ -112,7 +112,10 @@ var util = {
 		if(!cache.rawServiceConfigs[serviceDir]) {
 			var searchPath = APP_PATH + 'services/' + serviceDir + '/*-config.json';
 			var filePath = glob.sync(searchPath)[0];
-			cache.rawServiceConfigs[serviceDir] = loadJson(filePath);
+			if(filePath)
+				cache.rawServiceConfigs[serviceDir] = loadJson(filePath);
+			else
+				cache.rawServiceConfigs[serviceDir] = {};
 		}
 
 		return cache.rawServiceConfigs[serviceDir];

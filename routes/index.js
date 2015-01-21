@@ -63,15 +63,15 @@ router.get('/', function(req, res) {
 
 
 
-router.get('/customer/:id', function(req, res) {
-	
-	//res.render('index', { title: 'Hot Reloaded grunt' });
-	res.render('customer', {
-		id: req.params.id,
-		firstName: "Kevin",
-		lastName: "Sheedy"
-	});
-});
+//router.get('/customer/:id', function(req, res) {
+//	
+//	//res.render('index', { title: 'Hot Reloaded grunt' });
+//	res.render('customer', {
+//		id: req.params.id,
+//		firstName: "Kevin",
+//		lastName: "Sheedy"
+//	});
+//});
 
 //router.get('/forward', function(req, res) {
 //	
@@ -135,7 +135,6 @@ function initGETjsonRefactored(url, serviceDir) {
 	router.get(url, function(req, res) {
 
 		var state = getState(url);
-		console.log('state:', state);
 		var serviceConfig = util.getServiceConfig(serviceDir);
 		var stateConfig = serviceConfig.states[state];
 
