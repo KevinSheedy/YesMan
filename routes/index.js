@@ -6,7 +6,6 @@ var extend = require('node.extend');
 var _ = require('underscore');
 var appPath = require('../js/globals').appPath;
 var config = require(appPath + '/config');
-var routes = require('../js/routes-lookup').all();
 var util = require('../js/util');
 var getIntersection = require('../js/get-intersection');
 var getState = require('../js/get-state');
@@ -79,7 +78,6 @@ router.get('/', function(req, res) {
 //});
 
 
-//_.each(routes, initRouteHandler);
 
 initForwards();
 initServices();

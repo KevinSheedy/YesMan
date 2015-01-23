@@ -1,5 +1,5 @@
 module.exports = function(app, yesmanModule){
-	console.log('Load plugins...:');
+	console.log('Loading plugins...');
 
 	var express = yesmanModule.require('express');
 	var router = express.Router();

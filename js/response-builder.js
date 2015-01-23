@@ -7,7 +7,6 @@ var config = require(globals.appPath + '/config.json');
 var util = require('../js/util');
 var getState = require('../js/get-state');
 
-var routesLookup = require('../js/routes-lookup');
 var getIntersection = require('../js/get-intersection');
 var dummyDataGenerator = require('../js/dummy-data-generator');
 
@@ -16,7 +15,6 @@ var reqParsers = require('../js/req-parsers');
 
 module.exports = function(serviceDir, stateConfig, reqBody) {
 
-console.log(serviceDir, stateConfig.template);
 	var template  = util.getServiceTemplate(serviceDir, stateConfig.template);
 	var reqData   = reqParsers(stateConfig.reqParser)(template, reqBody);
 	var genData   = dummyDataGenerator(stateConfig.mockGenerator)(reqBody);
