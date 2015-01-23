@@ -10,7 +10,6 @@ var routes = require('../js/routes-lookup').all();
 var util = require('../js/util');
 var getIntersection = require('../js/get-intersection');
 var getState = require('../js/get-state');
-var responseBuilder = require('../js/response-builder');
 var responseBuilderRefactored = require('../js/response-builder-refactored');
 
 //var yesmanTest = require('../test/yesman-test');
@@ -105,6 +104,8 @@ function initForwards() {
 function initServices(router) {
 	var services = util.getServices();
 
+	console.log("Registering handlers for urls:")
+
 	_.each(services, function(serviceDir, url) {
 
 		initService(url, serviceDir, router);
@@ -114,7 +115,7 @@ function initServices(router) {
 
 function initService(url, serviceDir) {
 
-	console.log(url, serviceDir);
+	console.log(url);
 	// var serviceConfig = util.getRawServiceConfig(serviceDir);
 	var generatedConfig = util.getServiceConfig(serviceDir);
 
@@ -152,7 +153,6 @@ function initPOSTjsonRefactored(url, serviceDir) {
 	router.post(url, function(req, res) {
 
 		var state = getState(url);
-		console.log('state:', state);
 		var serviceConfig = util.getServiceConfig(serviceDir);
 		var stateConfig = serviceConfig.states[state];
 
@@ -166,57 +166,6 @@ function initPOSTjsonRefactored(url, serviceDir) {
 }
 
 
-
-
-
-
-
-
-
-
-
-function initRouteHandler(service, url) {
-	
-	if(_.contains(service.verbs, "GET")) {
-		initGETjson(service, url);
-	}
-	
-	if(_.contains(service.verbs, "POST")) {
-		initPOSTjson(service, url);
-	}
-}
-
-function initGETjson(service, url) {
-
-	router.get(url, function(req, res) {
-
-		var state = getState(url);
-		var stateConfig = service.states[state];
-
-		res.set('Content-Type', 'application/json');
-		res.status(stateConfig.httpStatus);
-
-		var response = responseBuilder(url, req.body);
-
-		res.send(response);
-	});
-}
-
-function initPOSTjson(service, url) {
-
-	router.post(url, function(req, res) {
-
-		var state = getState(url);
-		var stateConfig = service.states[state];
-
-		res.set('Content-Type', 'application/json');
-		res.status(stateConfig.httpStatus);
-
-		var response = responseBuilder(url, req.body);
-
-		res.send(response);
-	});
-}
 
 
 module.exports = router;

@@ -1,0 +1,23 @@
+{
+	"verbs" : ["GET", "POST"],
+
+	"defaultState" : {
+		"httpStatus" : 200,
+		"template" : null,
+		"reqParser" : null,
+		"mockGenerator" : null,
+		"diff" : null
+	},
+
+	"defaultStates" : {
+		"default" : {
+
+		},
+		"unauthorized" : {
+			"httpStatus" : 401
+		},
+		"serverError" : {
+			"httpStatus" : 500
+		}
+	}
+}
