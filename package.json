@@ -1,6 +1,6 @@
 {
   "name": "yesman",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Json Mocking Server",
   "scripts": {
     "start": "node ./bin/www"

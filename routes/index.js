@@ -84,8 +84,11 @@ initServices();
 
 function initForwards() {
 	var forwards = util.getForwards();
+	console.log("\nForwards:");
 
 	_.each(forwards, function(forwardingUrl, receivedUrl) {
+
+		console.log(receivedUrl, "->", forwardingUrl);
 
 		router.get(receivedUrl, function(req, res) {
 
@@ -102,7 +105,7 @@ function initForwards() {
 function initServices(router) {
 	var services = util.getServices();
 
-	console.log("Registering handlers for urls:")
+	console.log("\nServices:")
 
 	_.each(services, function(serviceDir, url) {
 

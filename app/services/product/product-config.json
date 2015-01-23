@@ -1,0 +1,12 @@
+{
+	"verbs" : ["GET"],
+
+	"states" : {
+		"man-month" : {
+			"diff" : "product-diff-mythical.json"
+		},
+		"clean-code" : {
+			"diff" : "product-diff-clean-code.json"
+		}
+	}
+}
