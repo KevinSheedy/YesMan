@@ -10,7 +10,7 @@ var routes = require('../js/routes-lookup').all();
 var util = require('../js/util');
 var getIntersection = require('../js/get-intersection');
 var getState = require('../js/get-state');
-var responseBuilderRefactored = require('../js/response-builder-refactored');
+var responseBuilderRefactored = require('../js/response-builder');
 
 //var yesmanTest = require('../test/yesman-test');
 

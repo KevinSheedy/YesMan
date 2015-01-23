@@ -16,6 +16,7 @@ var reqParsers = require('../js/req-parsers');
 
 module.exports = function(serviceDir, stateConfig, reqBody) {
 
+console.log(serviceDir, stateConfig.template);
 	var template  = util.getServiceTemplate(serviceDir, stateConfig.template);
 	var reqData   = reqParsers(stateConfig.reqParser)(template, reqBody);
 	var genData   = dummyDataGenerator(stateConfig.mockGenerator)(reqBody);
