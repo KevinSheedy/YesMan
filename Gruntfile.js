@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 					  'app.js'
 					, 'bin/**/*.js'
 					, 'mocks/**/*.hbs'
-					, 'routes/**/*.js'
+					, 'app/**/*'
 				],
 				tasks:  [ 'express:dev' ],
 				options: {
@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 			},
 			dev: {
 				options: {
-				script: './bin/www'
+				script: 'dev-start.js'
 			}
 			},
 			prod: {
