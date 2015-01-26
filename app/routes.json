@@ -1,9 +1,0 @@
-{
-	"simpleGET" : [
-		"/foo",
-		"/products/books/freakonomics"
-	],
-	"simpleStatefulMocks" : [
-		"/shop/opening-hours"
-	]
-}

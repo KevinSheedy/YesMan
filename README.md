@@ -1,7 +1,57 @@
 # YesMan
-Yesman is a **mocking server** built on node.js and express.js. It is designed for use with RESTful json APIs.
+Diff based a **mocking server** built on express.js. It is designed for use with RESTful json APIs.
 
 ## Overview
+
+Each mocked service has a json template file which defines the structure of the response. Diffs or deltas are then applied to the template to produce the desired response. Both the template and the diffs are pure json.
+
+## Install
+```shell
+npm install -g yesman
+```
+
+## Create a yesman app
+```shell
+yesman init
+```
+
+## Start the yesman server
+```shell
+yesman start <app-path>
+```
+
+## Help
+```shell
+yesman help
+```
+
+## Services / URLs
+All available urls are defined in the services.json file. Each url points to a folder which contains the template, config and diffs for that service:
+```json
+{
+	"services" : {
+		  "/customer"             : "<customer-dir>"
+		, "/product"              : "<product-dir>"
+		, "/currencies"           : "<currencies-dir>"
+	},
+	.
+	.
+}
+```
+
+## Forwards
+Services can also be configured to forward to an external url:
+```json
+{
+	.
+	.
+	"forwards" : {
+		  "/countries" : "https://gist.githubusercontent.com/Keeguon/2310008/raw/865a58f59b9db2157413e7d3d949914dbf5a237d/countries.json"
+	}
+}
+```
+
+## Template
 
 Yesman combines data from **4 sources** to build a mock json response.
 
@@ -12,26 +62,14 @@ Yesman combines data from **4 sources** to build a mock json response.
 
 This merge is done using [json-cascade](https://www.npmjs.com/package/json-cascade).
 
-## Install
-```shell
-npm install -g yesman
-```
-
-## Usage
-```shell
-yesman init
-cd yesman
-yesman start
-```
-
 ## Templates
 Templates define the structure of the response and are stored in .json files in the templates folder.
 
 ## States
 Each service can be put into various states to mimic the behaviour of a stateful application (eg a database). State information is stored as a **diff** in .json format in the [diffs](diffs) folder.
 
-## Routes
-Services are configured in the [routes.json](routes.json) file. The available configuration values are:
+## Config
+Services are configured in the <servicedir>/<servicename>-config.json file. The available configuration values are:
 
 - `verbs` - a list of HTTP request methods for this service eg `["GET", "POST"]`
 - `template` - path to the template file relative to the templates folder eg `/customer.json`
@@ -40,7 +78,7 @@ Services are configured in the [routes.json](routes.json) file. The available co
 - `diff` - path to a custom diff file.
 - `states` - list of available states. Each state may override the service level config options: `template`, `reqParser`, `mockGenerator`, `diff`
 
-Any values that are not set explicitly will be defaulted and output to the file `/build/_generated-routes.json`
+Any values that are not set explicitly will be defaulted based on the file default-service-config.json.
 
 ## Scenarios
 A **scenario** is a list of services and their current states. This allows us to define the behaviour for a particular sequence of service calls. See [scenarios.json](scenarios.json). The scenario under test is set in [config.json](config.json).
