@@ -15,10 +15,8 @@ module.exports = function(grunt) {
 
 			express: {
 				files:  [
-					  'app.js'
-					, 'bin/**/*.js'
-					, 'mocks/**/*.hbs'
-					, 'app/**/*'
+					  'app/**/*'
+					, 'js/*.js'
 				],
 				tasks:  [ 'express:dev' ],
 				options: {
