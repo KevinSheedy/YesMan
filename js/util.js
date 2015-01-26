@@ -74,7 +74,8 @@ var util = {
 		return model;
 	},
 
-	getState : function(scenarioName, url) {
+	getServiceState : function(url) {
+		var scenarioName = util.getCurrentScenario();
 
 		if(!cache.scenarios) {
 			var path = APP_PATH + 'scenarios.json';
@@ -156,6 +157,11 @@ var util = {
 
 		var diffPath = APP_PATH + 'services' + '/' + serviceDir + '/' + diffFileName;
 		return require(diffPath);
+	},
+
+	getCurrentScenario : function() {
+		var config = loadJson(APP_PATH + 'config.json');
+		return config.scenario;
 	}
 }
 

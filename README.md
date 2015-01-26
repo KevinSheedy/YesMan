@@ -37,6 +37,7 @@ All available urls are defined in the `services.json` file. Each url points to a
 }
 ```
 
+
 ## Forwards
 Services can also be configured to forward to an external url in `services.json`:
 ```json
@@ -46,6 +47,7 @@ Services can also be configured to forward to an external url in `services.json`
 	}
 }
 ```
+
 
 ## Service Folder
 Each service has it's own folder containing templates, config and diffs for that service:
@@ -58,10 +60,12 @@ customer
     customer-diff-mary-jones.json
 ```
 
+
 ## Template
 A template is pure json and is named <service-name>-config.json. A simple service can function with just a template file and no config file or diff files (see the currencies service). In this case, the template itself is returned unmodified.
 
 For more complex services, multiple diffs can be applied to the template to produce the desired output. See [json-cascade](https://www.npmjs.com/package/json-cascade) for more on how templates work.
+
 
 ## Config
 Services are configured in the `<servicedir>/<servicename>-config.json` file. The available configuration values are:
@@ -75,8 +79,18 @@ Services are configured in the `<servicedir>/<servicename>-config.json` file. Th
 
 Any values that are not set explicitly will be defaulted based on the file default-service-config.json.
 
+
+## States / Diffs
+Each service can be put into various states to mimic the behaviour of a stateful application (eg a database). State information is stored as a **diff** in .json file.
+
+
+## Scenarios
+A **scenario** is a list of services and their current states. This allows us to define the behaviour for a particular sequence of service calls. See [scenarios.json](scenarios.json). The scenario under test is set in [config.json](config.json). Changing the scenario in config.json does **not** require a restart.
+
+
 ## Use with Grunt
 Yesman can be started via Grunt using the [grunt-express-server](https://github.com/ericclemmons/grunt-express-server) plugin. It can also be restarted automatically as your code changes using the [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) plugin. For an example, see [Gruntfile.js](https://github.com/KevinSheedy/YesMan/blob/master/Gruntfile.js)
+
 
 
 ## foo
@@ -87,11 +101,3 @@ Yesman combines data from **4 sources** to build a mock json response.
 - **HttpRequest** - Values can be picked from the request and echoed back in the response.
 - **Generator** - Values can be generated dynamically eg timestamps
 - **State** - Each service can be put into a particular state. For example, for a customer lookup service, the state could be set to: CUSTOMER_FOUND, CUSTOMER_NOT_FOUND, UNAUTHORIZED, SERVER_ERROR
-
-
-## States
-Each service can be put into various states to mimic the behaviour of a stateful application (eg a database). State information is stored as a **diff** in .json format in the [diffs](diffs) folder.
-
-
-## Scenarios
-A **scenario** is a list of services and their current states. This allows us to define the behaviour for a particular sequence of service calls. See [scenarios.json](scenarios.json). The scenario under test is set in [config.json](config.json).

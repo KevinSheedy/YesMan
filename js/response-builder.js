@@ -5,7 +5,6 @@ var jsonCascade = require('json-cascade');
 var globals = require('./globals');
 var config = require(globals.appPath + '/config.json');
 var util = require('../js/util');
-var getState = require('../js/get-state');
 
 var getIntersection = require('../js/get-intersection');
 var dummyDataGenerator = require('../js/dummy-data-generator');

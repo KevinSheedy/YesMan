@@ -8,7 +8,6 @@ var appPath = require('../js/globals').appPath;
 var config = require(appPath + '/config');
 var util = require('../js/util');
 var getIntersection = require('../js/get-intersection');
-var getState = require('../js/get-state');
 var responseBuilder = require('../js/response-builder');
 
 //var yesmanTest = require('../test/yesman-test');
@@ -35,7 +34,7 @@ var simplePOST = function(url) {
 var simpleStatefulMock = function(url) {
 	router.get(url, function(req, res) {
 
-		var currentState = getState(url);
+		var currentState = 'foo';
 		res.render('.' + url + '/' + currentState, {});
 	});
 }
@@ -136,7 +135,7 @@ function initGETjson(url, serviceDir) {
 
 	router.get(url, function(req, res) {
 
-		var state = getState(url);
+		var state = util.getServiceState(url);
 		var serviceConfig = util.getServiceConfig(serviceDir);
 		var stateConfig = serviceConfig.states[state];
 
@@ -153,7 +152,7 @@ function initPOSTjson(url, serviceDir) {
 
 	router.post(url, function(req, res) {
 
-		var state = getState(url);
+		var state = util.getServiceState(url);
 		var serviceConfig = util.getServiceConfig(serviceDir);
 		var stateConfig = serviceConfig.states[state];
 
