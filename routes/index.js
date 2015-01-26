@@ -79,8 +79,8 @@ router.get('/', function(req, res) {
 
 
 
-initForwards();
 initServices();
+initForwards();
 
 function initForwards() {
 	var forwards = util.getForwards();
