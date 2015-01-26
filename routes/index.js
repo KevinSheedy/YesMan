@@ -9,7 +9,7 @@ var config = require(appPath + '/config');
 var util = require('../js/util');
 var getIntersection = require('../js/get-intersection');
 var getState = require('../js/get-state');
-var responseBuilderRefactored = require('../js/response-builder');
+var responseBuilder = require('../js/response-builder');
 
 //var yesmanTest = require('../test/yesman-test');
 
@@ -123,16 +123,16 @@ function initService(url, serviceDir) {
 	//console.log('generatedConfig:', generatedConfig);
 
 	if(_.contains(generatedConfig.verbs, "GET")) {
-		initGETjsonRefactored(url, serviceDir);
+		initGETjson(url, serviceDir);
 	}
 	
 	if(_.contains(generatedConfig.verbs, "POST")) {
-		initPOSTjsonRefactored(url, serviceDir);
+		initPOSTjson(url, serviceDir);
 	}
 
 }
 
-function initGETjsonRefactored(url, serviceDir) {
+function initGETjson(url, serviceDir) {
 
 	router.get(url, function(req, res) {
 
@@ -143,13 +143,13 @@ function initGETjsonRefactored(url, serviceDir) {
 		res.set('Content-Type', 'application/json');
 		res.status(stateConfig.httpStatus);
 
-		var response = responseBuilderRefactored(serviceDir, stateConfig, req.body);
+		var response = responseBuilder(serviceDir, stateConfig, req.body);
 
 		res.send(response);
 	});
 }
 
-function initPOSTjsonRefactored(url, serviceDir) {
+function initPOSTjson(url, serviceDir) {
 
 	router.post(url, function(req, res) {
 
@@ -160,7 +160,7 @@ function initPOSTjsonRefactored(url, serviceDir) {
 		res.set('Content-Type', 'application/json');
 		res.status(stateConfig.httpStatus);
 
-		var response = responseBuilderRefactored(serviceDir, stateConfig, req.body);
+		var response = responseBuilder(serviceDir, stateConfig, req.body);
 
 		res.send(response);
 	});

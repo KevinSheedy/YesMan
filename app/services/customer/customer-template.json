@@ -1,4 +1,6 @@
 {
 	"firstname" : "Kevin",
-	"lastname" : "Sheedy"
+	"lastname" : "Sheedy",
+	"age" : 32,
+	"gendre" : "M"
 }

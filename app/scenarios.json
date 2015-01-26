@@ -1,1 +1,10 @@
-{}
+{
+	"scenario-one" : {
+		"/customer" : "john-smith",
+		"product" : "clean-code"
+	},
+	"scenario-two" : {
+		"/customer" : "mary-jones",
+		"/product" : "mythical"
+	}
+}

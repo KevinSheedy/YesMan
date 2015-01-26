@@ -1,0 +1,12 @@
+{
+	"verbs" : ["GET"],
+
+	"states" : {
+		"john-smith" : {
+			"diff" : "customer-diff-john-smith.json"
+		},
+		"mary-jones" : {
+			"diff" : "customer-diff-mary-jones.json"
+		}
+	}
+}
