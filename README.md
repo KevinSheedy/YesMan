@@ -26,29 +26,36 @@ yesman help
 ```
 
 ## Services / URLs
-All available urls are defined in the services.json file. Each url points to a folder which contains the template, config and diffs for that service:
+All available urls are defined in the `services.json` file. Each url points to a folder which contains the template, config and diffs for that service:
 ```json
 {
 	"services" : {
 		  "/customer"             : "<customer-dir>"
 		, "/product"              : "<product-dir>"
 		, "/currencies"           : "<currencies-dir>"
-	},
-	.
-	.
+	}
 }
 ```
 
 ## Forwards
-Services can also be configured to forward to an external url:
+Services can also be configured to forward to an external url in `services.json`:
 ```json
 {
-	.
-	.
 	"forwards" : {
 		  "/countries" : "<external-url>"
 	}
 }
+```
+
+## Service Folder
+Each service has it's own folder containing templates, config and diffs for that service:
+
+```
+customer
+    customer-config.json
+    customer-template.json
+    customer-diff-john-smith.json
+    customer-diff-mary-jones.json
 ```
 
 ## Template
@@ -57,7 +64,7 @@ A template is pure json and is named <service-name>-config.json. A simple servic
 For more complex services, multiple diffs can be applied to the template to produce the desired output. See [json-cascade](https://www.npmjs.com/package/json-cascade) for more on how templates work.
 
 ## Config
-Services are configured in the <servicedir>/<servicename>-config.json file. The available configuration values are:
+Services are configured in the `<servicedir>/<servicename>-config.json` file. The available configuration values are:
 
 - `verbs` - a list of HTTP request methods for this service eg `["GET", "POST"]`
 - `template` - path to the template file relative to the templates folder eg `/customer.json`
@@ -71,6 +78,8 @@ Any values that are not set explicitly will be defaulted based on the file defau
 ## Use with Grunt
 Yesman can be started via Grunt using the [grunt-express-server](https://github.com/ericclemmons/grunt-express-server) plugin. It can also be restarted automatically as your code changes using the [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) plugin. For an example, see [Gruntfile.js](https://github.com/KevinSheedy/YesMan/blob/master/Gruntfile.js)
 
+
+## foo
 
 Yesman combines data from **4 sources** to build a mock json response.
 
