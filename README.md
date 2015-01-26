@@ -52,21 +52,9 @@ Services can also be configured to forward to an external url:
 ```
 
 ## Template
+A template is pure json and is named <service-name>-config.json. A simple service can function with just a template file and no config file or diff files (see the currencies service). In this case, the template itself is returned unmodified.
 
-Yesman combines data from **4 sources** to build a mock json response.
-
-- **Template** - Defines the structure of the response and some default values.
-- **HttpRequest** - Values can be picked from the request and echoed back in the response.
-- **Generator** - Values can be generated dynamically eg timestamps
-- **State** - Each service can be put into a particular state. For example, for a customer lookup service, the state could be set to: CUSTOMER_FOUND, CUSTOMER_NOT_FOUND, UNAUTHORIZED, SERVER_ERROR
-
-This merge is done using [json-cascade](https://www.npmjs.com/package/json-cascade).
-
-## Templates
-Templates define the structure of the response and are stored in .json files in the templates folder.
-
-## States
-Each service can be put into various states to mimic the behaviour of a stateful application (eg a database). State information is stored as a **diff** in .json format in the [diffs](diffs) folder.
+For more complex services, multiple diffs can be applied to the template to produce the desired output. See [json-cascade](https://www.npmjs.com/package/json-cascade) for more on how templates work.
 
 ## Config
 Services are configured in the <servicedir>/<servicename>-config.json file. The available configuration values are:
@@ -79,6 +67,19 @@ Services are configured in the <servicedir>/<servicename>-config.json file. The 
 - `states` - list of available states. Each state may override the service level config options: `template`, `reqParser`, `mockGenerator`, `diff`
 
 Any values that are not set explicitly will be defaulted based on the file default-service-config.json.
+
+
+Yesman combines data from **4 sources** to build a mock json response.
+
+- **Template** - Defines the structure of the response and some default values.
+- **HttpRequest** - Values can be picked from the request and echoed back in the response.
+- **Generator** - Values can be generated dynamically eg timestamps
+- **State** - Each service can be put into a particular state. For example, for a customer lookup service, the state could be set to: CUSTOMER_FOUND, CUSTOMER_NOT_FOUND, UNAUTHORIZED, SERVER_ERROR
+
+
+## States
+Each service can be put into various states to mimic the behaviour of a stateful application (eg a database). State information is stored as a **diff** in .json format in the [diffs](diffs) folder.
+
 
 ## Scenarios
 A **scenario** is a list of services and their current states. This allows us to define the behaviour for a particular sequence of service calls. See [scenarios.json](scenarios.json). The scenario under test is set in [config.json](config.json).
