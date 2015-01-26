@@ -46,7 +46,7 @@ Services can also be configured to forward to an external url:
 	.
 	.
 	"forwards" : {
-		  "/countries" : "https://gist.githubusercontent.com/Keeguon/2310008/raw/865a58f59b9db2157413e7d3d949914dbf5a237d/countries.json"
+		  "/countries" : "<external-url>"
 	}
 }
 ```
@@ -67,6 +67,9 @@ Services are configured in the <servicedir>/<servicename>-config.json file. The 
 - `states` - list of available states. Each state may override the service level config options: `template`, `reqParser`, `mockGenerator`, `diff`
 
 Any values that are not set explicitly will be defaulted based on the file default-service-config.json.
+
+## Use with Grunt
+Yesman can be started via Grunt using the [grunt-express-server](https://github.com/ericclemmons/grunt-express-server) plugin. It can also be restarted automatically as your code changes using the [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) plugin. For an example, see [Gruntfile.js](https://github.com/KevinSheedy/YesMan/blob/master/Gruntfile.js)
 
 
 Yesman combines data from **4 sources** to build a mock json response.

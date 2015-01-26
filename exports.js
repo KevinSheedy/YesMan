@@ -1,6 +1,6 @@
 module.exports = {
 	start : function(appPath){
-		console.log('YesMan!!!!!!!');
+		console.log('YesMan Mocking Server starting...');
 		var debug = require('debug')('myapp');
 		require('./js/globals').appPath = appPath + '/';
 		var app = initExpressApp(appPath);
